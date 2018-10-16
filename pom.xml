@@ -20,8 +20,10 @@
 
 
 	<modules>
-		<module>learnspringcloud</module>
+		<module>helloserver</module>
 		<module>eurekaserver</module>
+		<module>eurekaserver2</module>
+		<module>ribbon-consumer</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
