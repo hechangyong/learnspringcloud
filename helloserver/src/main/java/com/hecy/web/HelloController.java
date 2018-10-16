@@ -23,8 +23,9 @@ public class HelloController {
     @Autowired
     private Registration registration; // 服务注册
 
-    @RequestMapping(value="/aa", method=RequestMethod.GET)
+    @RequestMapping(value="/hello", method=RequestMethod.GET)
     public String index(){
+        logger.info("helloserver hello");
         return "Hello world";
     }
 

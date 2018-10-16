@@ -1,6 +1,7 @@
 package com.learn.learnspringcloud;
 
-import com.learn.web.HelloController;
+import com.hecy.HelloServerApplication;
+import com.hecy.web.HelloController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringJUnit4ClassRunner.class)
 /** 指定Sping 启动类*/
-@SpringBootTest(classes = ClientCloudApplication.class)
+@SpringBootTest(classes = HelloServerApplication.class)
 /** 开启web应用的配置，用于模拟servletContext */
 @WebAppConfiguration
 public class HelloTest {
