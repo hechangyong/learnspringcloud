@@ -6,3 +6,13 @@ spring:
 
 server:
   port: 9002
+management:
+  endpoints:
+    web:
+      base-path: /hecy
+
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true

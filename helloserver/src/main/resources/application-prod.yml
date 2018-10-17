@@ -5,5 +5,7 @@ eureka:
   instance:
     leaseRenewalIntervalInSeconds: 1 #服务续约任务调用间隔时间  心跳
     leaseExpirationDurationInSeconds: 2 # 服务失效时间
-    statusPageUrlPath: http://localhost:9001/actuator/info
-    healthCheckUrlPath: http://localhost:9001/actuator/health
+    statusPageUrlPath: /actuator/info
+    healthCheckUrlPath: /actuator/health
+    instance-id: ${spring.application.name}:${random.int}
+    hostname: localhost
