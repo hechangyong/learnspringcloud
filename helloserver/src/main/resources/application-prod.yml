@@ -8,4 +8,4 @@ eureka:
     statusPageUrlPath: /actuator/info
     healthCheckUrlPath: /actuator/health
     instance-id: ${spring.application.name}:${random.int}
-    hostname: localhost
+#    hostname: localhost

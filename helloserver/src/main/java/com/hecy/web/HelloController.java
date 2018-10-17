@@ -1,15 +1,15 @@
 package com.hecy.web;
 
+import com.hecy.bean.User;
 import org.springframework.beans.factory.annotation.Autowired;
  import org.springframework.cloud.client.ServiceInstance;
  import org.springframework.cloud.client.discovery.DiscoveryClient;
  import org.springframework.cloud.client.serviceregistry.Registration;
-import org.springframework.web.bind.annotation.RequestMapping;
- import org.springframework.web.bind.annotation.RequestMethod;
- import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-  import java.util.logging.Logger;
+import java.util.Map;
+import java.util.logging.Logger;
 
 @RestController
 public class HelloController {
@@ -27,6 +27,21 @@ public class HelloController {
     public String index(){
         logger.info("helloserver hello");
         return "Hello world";
+    }
+
+    @RequestMapping(value="/user", method=RequestMethod.GET)
+    public User getUser(@RequestParam String name){
+        logger.info("helloserver user----");
+        return new User(name,12);
+    }
+
+    @RequestMapping(value="/puser", method=RequestMethod.POST)
+    public User getUser(@PathVariable("name") String name, @RequestBody Map<String, String> map) {
+        logger.info("/puser name: " + name);
+        logger.info("/puser map : " + map);
+
+
+        return new User(name,12);
     }
 
     @RequestMapping(value="/cloud", method=RequestMethod.GET)
