@@ -46,18 +46,20 @@ public class ConsumerController {
     public User getPUser() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Auth-Token", "e348bc22-5efa-4299-9142-529f07a18ac9");
+        headers.add("Content-Type", "application/json; charset=utf8");
 
-        MultiValueMap<String, String> postParameters = new LinkedMultiValueMap<String, String>();
-        postParameters.add("owner", "11");
-        postParameters.add("subdomain", "aoa");
-        postParameters.add("comment", "");
-        HttpEntity<MultiValueMap<String, String>> requestEntity = new HttpEntity<MultiValueMap<String, String>>(postParameters, headers);
+        Map<String, String> postParameters = new HashMap<>();
+        postParameters.put("owner", "11");
+        postParameters.put("subdomain", "aoa");
+        postParameters.put("comment", "");
+        HttpEntity<Map<String, String>> requestEntity = new HttpEntity<Map<String, String>>(postParameters, headers);
 
         Map<String, String> param = new HashMap<>();
         param.put("name", "hecymap");
-        ResponseEntity<User> user2 = restTemplate.postForEntity("http://HELLOSERVER/puser/{1}", postParameters,User.class,"hecy");
+        ResponseEntity<User> user2 = restTemplate.postForEntity("http://HELLOSERVER/puser/{1}", requestEntity, User.class, "hecy");
         System.out.println("server body : " + user2);
-
+        User  user3 = restTemplate.postForObject("http://HELLOSERVER/puser/{1}", requestEntity, User.class, "hecy");
+        System.out.println("user3: " + user3);
         return user2.getBody();
     }
 
