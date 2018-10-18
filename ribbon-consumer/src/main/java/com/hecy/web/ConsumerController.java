@@ -1,6 +1,7 @@
 package com.hecy.web;
 
 import com.hecy.bean.User;
+import com.hecy.service.HelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -21,9 +22,13 @@ public class ConsumerController {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    HelloService helloService;
+
     @RequestMapping(value = "/ribbon", method = RequestMethod.GET)
     public String helloConsumer() {
-        String s = restTemplate.getForObject("http://HELLOSERVER/hello", String.class);
+//        String s = restTemplate.getForObject("http://HELLOSERVER/hello", String.class);
+        String s =  helloService.helloConsumer();
         System.out.println("server body : " + s);
         return s;
     }
