@@ -43,7 +43,7 @@ public class ConsumerController {
     @RequestMapping(value = "/ribbon", method = RequestMethod.GET)
     public String helloConsumer() {
 //        String s = restTemplate.getForObject("http://HELLOSERVER/hello", String.class);
-        String s = helloService.helloConsumer();
+        String s = helloService.helloConsumer(new User("helloConsumer", 12));
         System.out.println("server body : " + s);
         return s;
     }
@@ -86,15 +86,12 @@ public class ConsumerController {
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public User getUserByIdWithHystrix() throws ExecutionException, InterruptedException {
-        User u = new UserCommandService(com.netflix.hystrix.HystrixCommand.Setter.withGroupKey(
-                HystrixCommandGroupKey.Factory.asKey("")), restTemplate, 10L).execute();
+        User u = new UserCommandService(restTemplate, 10L).execute();
 
-        Future<User> fu = new UserCommandService(com.netflix.hystrix.HystrixCommand.Setter.withGroupKey(
-                HystrixCommandGroupKey.Factory.asKey("")), restTemplate, 10L).queue();
+        Future<User> fu = new UserCommandService( restTemplate, 10L).queue();
 
 
-        Observable<User> observe = new UserCommandService(com.netflix.hystrix.HystrixCommand.Setter.withGroupKey(
-                HystrixCommandGroupKey.Factory.asKey("")), restTemplate, 10L).observe();
+        Observable<User> observe = new UserCommandService(restTemplate, 10L).observe();
 
         User u2 = fu.get();
         logger.info("user2: " + u2);
