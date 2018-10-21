@@ -26,7 +26,7 @@ public class UserService {
         return restTemplate.getForObject("http://HELLOSERVER/user?name={1}", User.class, "hecy");
     }
 
-    @HystrixCommand(fallbackMethod = "defaultfallbackMethod1", ignoreExceptions = new Throwable[]{new Exception(),new RuntimeException} )
+    @HystrixCommand(fallbackMethod = "defaultfallbackMethod1", ignoreExceptions = Exception.class)
     public Future<User> asyncGetUser() {
         return new AsyncResult<User>() {
             @Override
