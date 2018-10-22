@@ -7,3 +7,11 @@ eureka:
   instance:
     statusPageUrlPath: /hecy/info  # 可以是相对路径  当需要https访问时 也可以配置成绝对路径
     healthCheckUrlPath: /hecy/health
+
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: hystrix.stream

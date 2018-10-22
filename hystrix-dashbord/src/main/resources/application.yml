@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: hystrixbashbord
+
+server:
+  port: 9003

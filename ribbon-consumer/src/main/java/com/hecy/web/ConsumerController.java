@@ -7,6 +7,7 @@ import com.hecy.service.UserService;
 import com.netflix.hystrix.HystrixCommand;
 import com.netflix.hystrix.HystrixCommandGroupKey;
 import com.netflix.hystrix.HystrixObservableCommand;
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -42,6 +43,7 @@ public class ConsumerController {
 
     @RequestMapping(value = "/ribbon", method = RequestMethod.GET)
     public String helloConsumer() {
+        HystrixRequestContext.initializeContext();
 //        String s = restTemplate.getForObject("http://HELLOSERVER/hello", String.class);
         String s = helloService.helloConsumer(new User("helloConsumer", 12));
         System.out.println("server body : " + s);

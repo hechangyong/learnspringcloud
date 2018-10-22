@@ -5,6 +5,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheKey;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheRemove;
 import com.netflix.hystrix.contrib.javanica.cache.annotation.CacheResult;
+import com.netflix.hystrix.strategy.concurrency.HystrixRequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -30,6 +31,7 @@ public class HelloService {
             groupKey = "helloConsumergroupkey",
             threadPoolKey = "helloConsumerThreadpoolKey")
     public String helloConsumer(@CacheKey("name") User user) {
+
         //todo 如果 是无参方法，且没有指定， cacheKey怎么生成。
         return restTemplate.getForObject("http://HELLOSERVER/hello", String.class);
     }
@@ -46,11 +48,12 @@ public class HelloService {
     }
 
 
-    public String helloConsumerCacheKey(){
+    public String helloConsumerCacheKey(User user){
         return "CacheKey";
     }
-    public String defaultfallbackMethod() {
-        return "error";
+
+    public String defaultfallbackMethod(User user) {
+        return "";
     }
 
 
