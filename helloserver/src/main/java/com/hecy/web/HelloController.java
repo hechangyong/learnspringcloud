@@ -7,6 +7,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.serviceregistry.Registration;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -42,6 +43,19 @@ public class HelloController {
 
 
         return new User(name, 12);
+    }
+
+
+    @RequestMapping(value = "/fandAll", method = RequestMethod.GET)
+    public List<User> fandAllUser(@RequestParam("ids") String ids) {
+        logger.info("/fandAll ids : " + ids);
+        List<User> result = new ArrayList<>();
+        for (String id : ids.split(",")) {
+            if (!id.isEmpty()) {
+                result.add(new User(id, 12));
+            }
+        }
+        return result;
     }
 
     @RequestMapping(value = "/cloud", method = RequestMethod.GET)

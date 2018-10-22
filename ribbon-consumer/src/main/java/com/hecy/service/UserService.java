@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
@@ -26,6 +27,13 @@ public class UserService {
         return restTemplate.getForObject("http://HELLOSERVER/user?name={1}", User.class, "hecy");
     }
 
+    @HystrixCommand(fallbackMethod = "defaultfallbackMethod")
+    public List<User> fandAllUser() {
+        return restTemplate.getForObject("http://HELLOSERVER/user?ids={1}", List.class, "1,2,3,4");
+    }
+
+
+
     @HystrixCommand(fallbackMethod = "defaultfallbackMethod1", ignoreExceptions = Exception.class)
     public Future<User> asyncGetUser() {
         return new AsyncResult<User>() {
@@ -35,6 +43,8 @@ public class UserService {
             }
         };
     }
+
+
 
 
     public User defaultfallbackMethod() {
