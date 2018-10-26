@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: feignconsumer
+
+server:
+  port: 9001
+
+
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true

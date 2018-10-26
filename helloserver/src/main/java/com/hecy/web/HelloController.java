@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Logger;
 
 @RestController
@@ -27,6 +28,13 @@ public class HelloController {
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String index() {
         logger.info("helloserver hello");
+        int sleeptime = new Random().nextInt(3000);
+        try {
+            Thread.sleep(sleeptime);
+            logger.info("sleeptime: " + sleeptime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "Hello world";
     }
 
@@ -43,6 +51,12 @@ public class HelloController {
 
 
         return new User(name, 12);
+    }
+
+    @PostMapping(value = "/getuserwithheader/{name}")
+    public User getUserwithheader(@PathVariable("name") String name, @RequestHeader Integer age) {
+        logger.info("/puser name: {}" + name + " getUserwithheader : " + age);
+        return new User(name, age);
     }
 
 

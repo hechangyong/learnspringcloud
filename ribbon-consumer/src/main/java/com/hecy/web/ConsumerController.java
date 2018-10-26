@@ -88,9 +88,10 @@ public class ConsumerController {
 
     @RequestMapping(value = "/getUser", method = RequestMethod.GET)
     public User getUserByIdWithHystrix() throws ExecutionException, InterruptedException {
+        HystrixRequestContext.initializeContext();
         User u = new UserCommandService(restTemplate, 10L).execute();
 
-        Future<User> fu = new UserCommandService( restTemplate, 10L).queue();
+        Future<User> fu = new UserCommandService(restTemplate, 10L).queue();
 
 
         Observable<User> observe = new UserCommandService(restTemplate, 10L).observe();

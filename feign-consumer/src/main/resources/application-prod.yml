@@ -1,0 +1,63 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://eureka2:9000/eureka/,http://eureka1:9100/eureka/
+    fetch-registry: true #获取注册中心服务清单
+    registry-fetch-interval-seconds: 10
+  instance:
+    statusPageUrlPath: /hecy/info  # 可以是相对路径  当需要https访问时 也可以配置成绝对路径
+    healthCheckUrlPath: /hecy/health
+
+
+
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: hystrix.stream
+
+
+
+ribbon:
+  ConnectionTimeout: 500
+  ReadTimeout: 2000
+
+# 针对  @FeignClient("HELLOSERVER") 配置的客户端， 配置 链接超时时间， 以及超时重试配置
+HELLOSERVER:
+  ribbon:
+    ConnectionTiimeout: 500
+    ReadTimeout: 2000
+    OkToRetryOnAllOperations: true
+    MaxAutoRetriesNextServer: 2
+    MaxAutoRetries: 1
+
+
+feign:
+  hystrix:
+    enabled: true #开启熔断配置
+  compression: # 开启 请求与响应的GZIP 压缩
+    request:
+      enabled: true
+    response:
+      enabled : false
+
+
+hystrix:
+  command:
+    hello:   # 这边配置的是对应的方法名
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 2000
+logging:
+  level:
+    com:
+      hecy:
+       f_server: debug
+
+
+
+
+
