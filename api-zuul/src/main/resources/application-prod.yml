@@ -1,0 +1,27 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone:  http://eureka2:9000/eureka/,http://eureka1:9100/eureka/
+    fetch-registry: true #获取注册中心服务清单
+    registry-fetch-interval-seconds: 10
+  instance:
+    statusPageUrlPath: /info  # 可以是相对路径  当需要https访问时 也可以配置成绝对路径
+    healthCheckUrlPath: /health
+
+
+management:
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: hystrix.stream
+
+zuul:
+  routes:
+    api-a-url:  # api-a-url 为路由的名字， 可以随意定义， 但是 一组 path ,和 url 必须保持同步。
+      path: /api-a-url/**
+      url: http://localhost:9002/
+
+    api-a:
+      path: /api-a/**
+      serviceId: RIBBONCONSUMER # zuul 注册到 注册中心后 可以直接使用serviceId 指定需要转发的服务id

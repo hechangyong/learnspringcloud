@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: prod
+  application:
+    name: zuul
+
+server:
+  port: 5555
+
+
