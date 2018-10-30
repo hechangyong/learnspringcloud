@@ -17,11 +17,11 @@ management:
         include: hystrix.stream
 
 zuul:
-  routes:
+  routes:  # 下面的路由规则是线性匹配的。  如果匹配到  /api-a/url/  就不会再往下面走了
     api-a-url:  # api-a-url 为路由的名字， 可以随意定义， 但是 一组 path ,和 url 必须保持同步。
-      path: /api-a-url/**
+      path: /api-a-url/**  # ** 可以匹配任意数量的字符。支持多级目录   ？ 匹配单个字符  * 匹配任意字符
       url: http://localhost:9002/
-
     api-a:
       path: /api-a/**
-      serviceId: RIBBONCONSUMER # zuul 注册到 注册中心后 可以直接使用serviceId 指定需要转发的服务id
+      serviceId: RIBBONCONSUMER # zuul 注册到 注册中心后 可以直接使用 serviceId 指定需要转发的服务id
+  ignored-patterns:  /**/helllo/**

@@ -28,6 +28,7 @@
         <module>hystrix-dashbord</module>
         <module>feign-consumer</module>
         <module>helloserver-api</module>
+        <module>api-zuul</module>
     </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
