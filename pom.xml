@@ -29,7 +29,9 @@
         <module>feign-consumer</module>
         <module>helloserver-api</module>
         <module>api-zuul</module>
-    </modules>
+		<module>config-server</module>
+		<module>config-client</module>
+	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

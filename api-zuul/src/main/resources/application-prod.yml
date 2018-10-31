@@ -25,3 +25,8 @@ zuul:
       path: /api-a/**
       serviceId: RIBBONCONSUMER # zuul 注册到 注册中心后 可以直接使用 serviceId 指定需要转发的服务id
   ignored-patterns:  /**/helllo/**
+  AccessErrorFilter:  # 禁用自定义过滤器类名
+    pre:
+      disable: false
+    error:
+      disable: false
