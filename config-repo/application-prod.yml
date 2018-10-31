@@ -1,0 +1,13 @@
+server:
+  port: 7001
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          username: hechangyong
+          password: hechangyong1234
+          uri: https://github.com/hechangyong/learnspringcloud.git
+          search-paths: config-repo
+
