@@ -21,8 +21,8 @@ public class ConfigController {
     @Autowired
     private Environment env;
 
-//    @Value("${from}")
-//    String from;
+    @Value("${from}")
+    String from;
 
     @RequestMapping("/e")
     public String env() {
