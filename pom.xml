@@ -31,7 +31,8 @@
         <module>api-zuul</module>
 		<module>config-server</module>
 		<module>config-client</module>
-	</modules>
+        <module>bus</module>
+    </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>

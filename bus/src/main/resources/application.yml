@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: bus
+  rabbitmq:
+    host: localhost
+    post: 5672
+    username: hecy
+    password: hecy
+
+
+
