@@ -32,6 +32,8 @@
 		<module>config-server</module>
 		<module>config-client</module>
         <module>bus</module>
+        <module>springcloudgateway</module>
+        <module>apolloDemo</module>
     </modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
